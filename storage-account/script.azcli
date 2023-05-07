@@ -1,0 +1,19 @@
+#### Preview changes
+
+az deployment group what-if \
+--resource-group <resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.paramaters.json
+
+#### Deploy the storage account
+
+az deployment group create \
+--resource-group <resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.paramaters.json
+
+#### Validate the deployment**
+
+az storage account show \
+--name <storage-account-name> \
+--resource-group <resource-group-name>
