@@ -1,2 +1,0 @@
-# Customer List by Ring
-
