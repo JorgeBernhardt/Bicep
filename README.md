@@ -2,7 +2,7 @@
 # Bicep
 The code behind my bicep posts
 
-https://www.jorgebernhardt.com/tag/bicep/
+https://www.jorgebernhardt.com/tags/bicep/
 
 Please follow me on [Twitter](https://twitter.com/JorgeBernhardt) and [LinkedIn](https://www.linkedin.com/in/jorgebernhardt/) and support my work. Thank you.
 
