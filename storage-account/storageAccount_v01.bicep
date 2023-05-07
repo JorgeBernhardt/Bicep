@@ -9,6 +9,13 @@
 @maxLength(18)
 param projectName string
 
+@description('Deployment Location')
+@allowed([
+  'westeurope'
+  'northeurope'
+])
+param location string
+
 @allowed([
   'Standard_LRS'
   'Standard_GRS'
@@ -21,19 +28,11 @@ param projectName string
 ])
 param stoSKU string = 'Standard_LRS'
 
-
-@description('Deployment Location')
-@allowed([
-  'westeurope'
-  'northeurope'
-])
-param location string
-
 @description('Resource tags')
 param resourceTags object = {
   environment: 'jorgebernhardt.com'
 }
-
+// This function ensures that the name is stored in lowercase.
 var storageAccountName = toLower('stoacc${projectName}')
 
 resource sto 'Microsoft.Storage/storageAccounts@2022-09-01' = {
@@ -43,6 +42,9 @@ resource sto 'Microsoft.Storage/storageAccounts@2022-09-01' = {
     name: stoSKU
   }
   kind: 'StorageV2'
+   properties: {
+     accessTier: 'Hot'
+   }
   tags: resourceTags
 }
 
