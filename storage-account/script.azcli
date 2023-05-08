@@ -3,14 +3,14 @@
 az deployment group what-if \
 --resource-group <resource-group-name> \
 --template-file <filename>.bicep \
---parameters @<filename>.paramaters.json
+--parameters @<filename>.parameters.json
 
 #### Deploy the storage account
 
 az deployment group create \
 --resource-group <resource-group-name> \
 --template-file <filename>.bicep \
---parameters @<filename>.paramaters.json
+--parameters @<filename>.parameters.json
 
 #### Validate the deployment**
 

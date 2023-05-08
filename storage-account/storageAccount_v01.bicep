@@ -6,7 +6,7 @@
 
 @description('Name of the project or solution')
 @minLength(3)
-@maxLength(18)
+@maxLength(22)
 param projectName string
 
 @description('Deployment Location')
@@ -26,20 +26,20 @@ param location string
   'Standard_GZRS'
   'Standard_RAGZRS'
 ])
-param stoSKU string = 'Standard_LRS'
+param stSKU string = 'Standard_LRS'
 
 @description('Resource tags')
 param resourceTags object = {
   environment: 'jorgebernhardt.com'
 }
 // This function ensures that the name is stored in lowercase.
-var storageAccountName = toLower('stoacc${projectName}')
+var storageAccountName = toLower('st${projectName}')
 
-resource sto 'Microsoft.Storage/storageAccounts@2022-09-01' = {
+resource st 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   name: storageAccountName
   location: location
   sku: {
-    name: stoSKU
+    name: stSKU
   }
   kind: 'StorageV2'
    properties: {
@@ -48,6 +48,6 @@ resource sto 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   tags: resourceTags
 }
 
-output storageAccountId string = sto.id
-output storageAccountName string = sto.name
+output storageAccountId string = st.id
+output storageAccountName string = st.name
 
