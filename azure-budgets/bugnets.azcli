@@ -1,0 +1,14 @@
+az deployment sub what-if \
+--template-file <filename>.bicep \
+--parameters @<filename>.paramaters.json 
+
+az deployment sub create \
+--template-file <filename>.bicep \
+--parameters @<filename>.paramaters.json 
+
+az deployment sub create \
+--template-file <filename>.bicep \
+--parameters @<filename>.paramaters.json 
+
+az consumption budget list \
+--output table

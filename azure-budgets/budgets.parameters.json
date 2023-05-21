@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "systemName": {
+        "value": "demo"
+      },
+      "environment": {
+        "value": "prod"
+      },
+      "maximumBudget": {
+        "value": 1000
+      },
+      "contactEmails": {
+        "value": ["email1@yourdomain.com", "email2@yourdomain.com"]
+      },
+      "startDate": {
+        "value": "2023-06-01"
+      },
+      "endDate": {
+        "value": "2024-06-01"
+      }
+    }
+  }
