@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "projectName": {
+        "value": "demo"
+      },
+      "location": {
+        "value": "westeurope"
+      },
+      "sku": {
+        "value": "Premium"
+      },
+      "adminEnabled": {
+        "value": false
+      },
+      "anonymousPullEnabled": {
+        "value": false
+      },
+      "dataEndpointEnabled": {
+        "value": false
+      },
+      "defaultAction": {
+        "value": "Allow"
+      },
+      "ipAddress": {
+        "value": "0.0.0.0"
+      },
+      "resourceTags": {
+        "value": {
+          "environment": "jorgebernhardt.com"
+        }
+      }
+    }
+}
+  
