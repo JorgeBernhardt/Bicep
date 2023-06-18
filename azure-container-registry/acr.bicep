@@ -4,7 +4,7 @@
   deployBy: 'Jorge Bernhardt'
 })
 
-@description('Name of the project or solution. Must be between 3 and 18 characters.')
+@description('Name of the project or solution')
 @minLength(3)
 @maxLength(18)
 param projectName string
