@@ -1,0 +1,12 @@
+az deployment group what-if \
+--resource-group <Resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json 
+
+az deployment group create \
+--resource-group <Resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json 
+
+az account tenant list \
+--query "[].tenantId"
