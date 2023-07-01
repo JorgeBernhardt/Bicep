@@ -44,6 +44,7 @@ param displayName string
 param resourceTags object = {
   environment: 'jorgebernhardt.com'
 }
+
 var directoryName = toLower('${projectName}.onmicrosoft.com')
 
 resource AzAdB2c 'Microsoft.AzureActiveDirectory/b2cDirectories@2021-04-01' = {
