@@ -1,0 +1,31 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "tenantId": {
+        "value": "<Your_Tenant_ID>"
+      },
+      "projectName": {
+        "value": "<Your_Project_Name>"
+      },
+      "location": {
+        "value": "<Location_of_Your_Resources>"
+      },
+      "skuName": {
+        "value": "PerGB2018"
+      },
+      "retentionInDays": {
+        "value": 90
+      },
+      "dataState": {
+        "value": "Enabled"
+      },
+      "resourceTags": {
+        "value": {
+          "environment": "dev",
+          "bicep": "true"
+        }
+      }
+    }
+  }
+  

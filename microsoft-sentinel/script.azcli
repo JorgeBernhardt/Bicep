@@ -1,0 +1,15 @@
+az deployment group what-if \
+--resource-group <resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json
+
+az deployment group create \
+--resource-group <resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json
+
+az sentinel data-connector list \
+--workspace-name <log-analytics-workspace-name> \
+--resource-group <resource-group-name> \
+--query "[].{kind:kind, name:name, tenantId:tenantId, state:dataTypes.alerts.state}" \
+--output table
