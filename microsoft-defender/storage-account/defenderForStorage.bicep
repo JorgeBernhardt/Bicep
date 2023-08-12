@@ -24,7 +24,7 @@ param subPlan string = 'DefenderForStorageV2'
 param onUploadMalwareScanningEnabled bool = true
 
 @description('Monthly cap in GB for malware scanning per storage account. Set to -1 for unlimited scanning.')
-param malwareScanningCapGB int = 5000
+param malwareScanningCapGB int
 
 @description('Enable or disable the Sensitive data discovery feature.')
 @allowed([
@@ -53,6 +53,7 @@ resource defenderForStorageSettings 'Microsoft.Security/pricings@2023-01-01' = {
     ] : []
   }
 }
+
 output pricingTierApplied string = defenderForStorageSettings.properties.pricingTier
 output subPlanApplied string = (pricingTier == 'Standard') ? defenderForStorageSettings.properties.subPlan : 'N/A'
 output onUploadMalwareScanningEnabledApplied string = (pricingTier == 'Standard') ? defenderForStorageSettings.properties.extensions[0].isEnabled : 'N/A'
