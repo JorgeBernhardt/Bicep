@@ -1,0 +1,17 @@
+az deployment sub what-if \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json 
+--location <location>
+
+az deployment sub create \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json \
+--location <location>
+
+az security pricing show \
+--name "StorageAccounts" \
+--query "[{Name:name, PricingTier:pricingTier, SubPlan:subPlan}]" \
+--output table 
+
+
+
