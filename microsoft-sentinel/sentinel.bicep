@@ -43,7 +43,7 @@ param dataState string = 'Enabled'
 @description('The tags to be associated with the resources.')
 param tags object = {
   bicep: 'true'
-  environment: 'jorgebernhatdt.com'
+  environment: 'jorgebernhardt.com'
 }
 
 // Variables

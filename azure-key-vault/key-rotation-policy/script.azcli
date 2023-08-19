@@ -1,0 +1,15 @@
+az deployment group what-if \
+--resource-group <resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json
+
+az deployment group create \
+--resource-group <resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json
+
+az keyvault key rotation-policy show \
+--name <key-name> \
+--vault-name <vault-name> 
+
+

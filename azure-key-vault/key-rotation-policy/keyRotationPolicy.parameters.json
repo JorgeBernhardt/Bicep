@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vaultName": {
+      "value": "KV-DEMO"
+    },
+    "keyName": {
+      "value": "DemoRSAKey"
+    },
+    "isKeyEnabled": {
+      "value": true 
+    },
+    "rotationTimeAfterCreate": {
+      "value": "P1Y"
+    },
+    "expiryTime": {
+      "value": "P13M"
+    },
+    "notifyTimeBeforeExpiry": {
+      "value": "P30D"
+    },
+    "tags": {
+      "value": {
+        "bicep": "true",
+        "environment": "jorgebernhardt.com"
+      }
+    }
+  }
+}
+
+  
