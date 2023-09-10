@@ -1,0 +1,68 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "keyVaultArray": {
+      "value": [
+        {
+          "name": "KV-DEMO",
+          "location": "westeurope",
+          "resourceGroupName": "RG-DEMO-WE",
+          "environment": "dev",
+          "properties": {
+            "enabledForDeployment": true,
+            "enabledForDiskEncryption": true,
+            "enabledForTemplateDeployment": true,
+            "enablePurgeProtection": false,
+            "enableSoftDelete": true,
+            "networkAcls": {
+              "bypass": "AzureServices",
+              "defaultAction": "Allow",
+              "ipRules": [],
+              "virtualNetworkRules": []
+            },
+            "publicNetworkAccess": "Enabled",
+            "sku": {
+              "name": "standard"
+            },
+            "softDeleteRetentionInDays": 7,
+            "tenantId": "00000000-0000-0000-0000-0000000000"
+          }
+        },
+        {
+          "name": "KV-DEMO",
+          "location": "northeurope",
+          "resourceGroupName": "RG-DEMO-NE",
+          "environment": "prod",
+          "properties": {
+            "enabledForDeployment": true,
+            "enabledForDiskEncryption": true,
+            "enabledForTemplateDeployment": true,
+            "enablePurgeProtection": false,
+            "enableSoftDelete": true,
+            "networkAcls": {
+              "bypass": "AzureServices",
+              "defaultAction": "Deny",
+              "ipRules": [
+                {"value":"192.168.123.124"}
+              ],
+              "virtualNetworkRules": []
+            },
+            "publicNetworkAccess": "Enabled",
+            "sku": {
+              "name": "premium"
+            },
+            "softDeleteRetentionInDays": 7,
+            "tenantId": "00000000-0000-0000-0000-0000000000"
+          }
+        }
+      ]
+    },
+    "tags": {
+      "value": {
+        "bicep": "true",
+        "app": "demo"
+      }
+    }
+  }
+}

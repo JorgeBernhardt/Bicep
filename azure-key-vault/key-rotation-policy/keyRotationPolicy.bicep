@@ -72,7 +72,7 @@ resource keyVaultKey 'Microsoft.KeyVault/vaults/keys@2023-02-01' = {
             timeBeforeExpiry: notifyTimeBeforeExpiry
           }
           action: {
-            type: 'notify'
+            type: 'Notify'
           }
         }
       ]
