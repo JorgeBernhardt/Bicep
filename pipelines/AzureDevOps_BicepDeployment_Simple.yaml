@@ -1,0 +1,80 @@
+# ---------------------------------------------------------------
+# Pipeline: AzureDevOps_BicepDeployment_Simple
+# Author: Jorge Bernhardt
+# Date: 23-09-2023
+# Version: 1.0.0
+# Description: 
+#   This pipeline validates and deploys Azure resources 
+#   using Bicep, through Azure DevOps.
+# ---------------------------------------------------------------
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    exclude:
+      - '*.md'
+      - 'docs/*'
+variables:
+    - group: vg_bicep_dev
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: ValidateDeployment
+  displayName: 'Validate and What-If Deployment'
+  jobs:
+  - job: DeployResourcesWithBicep
+    steps:
+    - task: AzureCLI@2
+      displayName: 'Validate Bicep files'
+      inputs:
+        azureSubscription: $(SERVICE_CONNECTION)
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az deployment group validate \
+            --resource-group $(RESOURCE_GROUP_NAME) \
+            --template-file ./your-path/template.bicep \
+            --parameters ./your-path/parameters.json
+        addSpnToEnvironment: true
+        
+    - task: AzureCLI@2
+      displayName: 'What-if Bicep files'
+      inputs:
+        azureSubscription: $(SERVICE_CONNECTION)
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az deployment group what-if \
+            --resource-group $(RESOURCE_GROUP_NAME) \
+            --template-file ./your-path/template.bicep \
+            --parameters ./your-path/parameters.json
+        addSpnToEnvironment: true
+        
+- stage: DeployResources
+  displayName: 'Create Azure resources'
+  dependsOn: ValidateDeployment
+  condition: succeeded()
+  jobs:
+  - deployment: Create
+    displayName: 'Deployment'
+    environment: 'deploymentEnvironment'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - checkout: self
+          - task: AzureCLI@2
+            displayName: 'Deploy'
+            inputs:
+              azureSubscription: $(SERVICE_CONNECTION)
+              scriptType: 'bash'
+              scriptLocation: 'inlineScript'
+              inlineScript: |
+                az deployment group create \
+                  --resource-group $(RESOURCE_GROUP_NAME) \
+                  --template-file ./your-path/template.bicep \
+                  --parameters ./your-path/parameters.json
+              addSpnToEnvironment: true
