@@ -1,0 +1,71 @@
+# ---------------------------------------------------------------
+# Workflow: GitHubActions_BicepDeployment_Simple
+# Author: Jorge Bernhardt
+# Date: 30-09-2023
+# Version: 1.0.0
+# Description:
+#   This workflow validates and deploys Azure resources
+#   using Bicep, through GitHub Actions.
+# ---------------------------------------------------------------
+name: Deploy Azure Resources
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '*.md'
+      - 'docs/*'
+  workflow_dispatch:
+
+env:
+  RESOURCE_GROUP_NAME: 'RG-DEMO'
+  AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+  TEMPLATE_FILE_PATH: './bicep-azure-container-registry/acr.bicep'
+  PARAMETERS_FILE_PATH: './bicep-azure-container-registry/acr.parameters.json'
+
+jobs:
+  validate_and_preview:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Validate Bicep files
+      run: |
+        az deployment group validate \
+          --resource-group ${{ env.RESOURCE_GROUP_NAME }} \
+          --template-file ${{ env.TEMPLATE_FILE_PATH }} \
+          --parameters ${{ env.PARAMETERS_FILE_PATH }}
+
+    - name: What-if Bicep files
+      run: |
+        az deployment group what-if \
+          --resource-group ${{ env.RESOURCE_GROUP_NAME }} \
+          --template-file ${{ env.TEMPLATE_FILE_PATH }} \
+          --parameters ${{ env.PARAMETERS_FILE_PATH }}
+
+  deploy_resources:
+    needs: validate_and_preview
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Deploy
+      run: |
+        az deployment group create \
+          --resource-group ${{ env.RESOURCE_GROUP_NAME }} \
+          --template-file ${{ env.TEMPLATE_FILE_PATH }} \
+          --parameters ${{ env.PARAMETERS_FILE_PATH }}
+
