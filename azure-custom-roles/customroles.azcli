@@ -1,0 +1,14 @@
+az deployment sub what-if \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json 
+--location <location>
+
+az deployment sub create \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json 
+--location <location>
+
+az role definition list \
+--custom-role-only true \
+--output table
+
