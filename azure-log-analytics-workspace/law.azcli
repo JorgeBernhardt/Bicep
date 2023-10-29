@@ -1,0 +1,13 @@
+az deployment group what-if \
+--resource-group <resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json
+
+az deployment group create \
+--resource-group <resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json
+
+az monitor log-analytics workspace list \
+--resource-group <nombre-del-grupo-de-recursos> \
+--output table

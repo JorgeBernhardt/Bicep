@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaces": {
+      "value": [
+        {
+          "name": "law-demo-we",
+          "location": "westeurope",
+          "identityType": "SystemAssigned",
+          "userAssignedIdentities": null,
+          "defaultDataCollectionRuleResourceId": null,
+          "clusterResourceId": null,
+          "disableLocalAuth": false,
+          "enableDataExport": false,
+          "enableLogAccessUsingOnlyResourcePermissions": false,
+          "immediatePurgeDataOn30Days": true,
+          "forceCmkForQuery": false,
+          "publicNetworkAccessForIngestion": "Disabled",
+          "publicNetworkAccessForQuery": "Disabled",
+          "retentionDays": 30,
+          "capacityReservationLevel": null,
+          "skuName": "PerGB2018",
+          "dailyQuotaGb": 1
+        },
+        {
+          "name": "law-demo-ne",
+          "location": "northeurope",
+          "identityType": "UserAssigned",
+          "userAssignedIdentities": {
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}": {}
+          },
+          "defaultDataCollectionRuleResourceId": null,
+          "clusterResourceId": null,
+          "disableLocalAuth": false,
+          "enableDataExport": false,
+          "enableLogAccessUsingOnlyResourcePermissions": false,
+          "immediatePurgeDataOn30Days": false,
+          "forceCmkForQuery": true,
+          "publicNetworkAccessForIngestion": "Enabled",
+          "publicNetworkAccessForQuery": "Enabled",
+          "retentionDays": 60,
+          "capacityReservationLevel": null,
+          "skuName": "PerGB2018",
+          "dailyQuotaGb": 2
+        }
+      ]
+    },
+    "tags": {
+      "value": {
+        "environment": "dev",
+        "bicep": "true"
+      }
+    }
+  }
+}
