@@ -1,0 +1,34 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "location": {
+        "value": "northeurope"
+      },
+      "vmSku": {
+        "value": "Standard_DS1_v2"
+      },
+      "instanceCount": {
+        "value": 2
+      },
+      "nameSubfix": {
+        "value": "bicep"
+      },
+      "subnetId": {
+        "value": "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Network/virtualNetworks/{vnet-name}/subnets/{subnet-name}"
+      },
+      "osType": {
+        "value": "Ubuntu"
+      },
+      "adminUsername": {
+        "value": "azadmin"
+      },
+      "tags": {
+        "value": {
+          "bicep": "true",
+          "environment": "PROD"
+        }
+      }
+    }
+  }
+  

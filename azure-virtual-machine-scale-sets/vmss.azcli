@@ -1,0 +1,35 @@
+adminPassword=$(az keyvault secret show --name <secret-name> --vault-name <keyvault-name> --query value -o tsv)
+
+az deployment group what-if \
+--resource-group <resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json \
+--parameters adminPassword=$adminPassword 
+
+az deployment group create \
+--resource-group <resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json \
+--parameters adminPassword=$adminPassword 
+
+az vmss show \
+  --name <vmss-name> \
+  --resource-group <resource-group-name> \
+  --query "{ \
+    vmssName:name, \
+    location:location, \
+    sku:sku \
+  }" \
+  --output json
+
+az vmss list-instances \
+  --name <vmss-name> \
+  --resource-group <resource-group-name> \
+  --query "[].{ \
+    vmId:instanceId, \
+    vmSize:hardwareProfile.vmSize, \
+    osType:storageProfile.osDisk.osType, \
+    provisioningState:provisioningState \
+  }" \
+  --output json
+
