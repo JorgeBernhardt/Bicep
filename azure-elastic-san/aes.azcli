@@ -1,0 +1,22 @@
+az deployment group what-if \
+--resource-group <resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json
+
+az deployment group create \
+--resource-group <resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json
+
+az resource list --query "[?type=='Microsoft.ElasticSan/elasticSans']"
+
+az resource list \
+--resource-group <resource-group-name> \
+--query "[?type=='Microsoft.ElasticSan/elasticSans']"
+
+az elastic-san show \
+--name <elastic-san-name> \
+--resource-group <resource-group-name>
+
+az elastic-san list
+

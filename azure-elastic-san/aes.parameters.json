@@ -1,0 +1,35 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "elasticSan": {
+            "value": {
+                "name": "aes-demo-ne-01",
+                "location": "northeurope",
+                "baseSizeTiB": 2,
+                "extendedCapacitySizeTiB": 1,
+                "skuName": "Premium_LRS",
+                "volumeGroupName": "vg01",
+                "volumes": [
+                    {
+                        "name": "volume1",
+                        "sizeGiB": 1024
+                    },
+                    {
+                        "name": "volume2",
+                        "sizeGiB": 500
+                    }
+                ],
+                "subnetIds": [
+                    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}"
+                ]
+            }
+        },
+        "tags": {
+            "value": {
+                "bicep": "true",
+                "environment": "jorgebernhatdt.com"
+            }
+        }
+    }
+}
