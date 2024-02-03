@@ -1,0 +1,18 @@
+az deployment group what-if \
+--resource-group <resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json
+
+az deployment group create \
+--resource-group <resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json
+
+az network firewall show \
+--name <firewall-name> \
+--resource-group <resource-group-name> \
+--query "{Name:name, Location:location, SKU:sku.name, Tier:sku.tier}" \
+--output table
+
+
+

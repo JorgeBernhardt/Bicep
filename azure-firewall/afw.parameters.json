@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectName": {
+      "value": "demo"
+    },
+    "location": {
+      "value": "uksouth"
+    },
+    "skuName": {
+      "value": "AZFW_VNet"
+    },
+    "skuTier": {
+      "value": "Standard"
+    },
+    "zones": {
+      "value": ["1"]
+    },
+    "publicIPAllocationMethod": {
+      "value": "Static"
+    },
+    "publicIPAddressVersion": {
+      "value": "IPv4"
+    },
+    "vnetName": {
+      "value": "VNET-HUB"
+    },
+    "subnetPrefix": {
+      "value": "10.0.1.0/26"
+    },
+    "serviceEndpoints": {
+      "value": [
+        {"service": "Microsoft.Storage"},
+        {"service": "Microsoft.Sql"},
+        {"service": "Microsoft.KeyVault"},
+        {"service": "Microsoft.ServiceBus"}
+      ]
+    },
+    "tags": {
+      "value": {
+        "bicep": "true",
+        "environment": "jorgebernhardt.com"
+      }
+    }
+  }
+}
