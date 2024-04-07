@@ -1,0 +1,20 @@
+az deployment group what-if \
+--resource-group <resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json
+
+az deployment group create \
+--resource-group <resource-group-name> \
+--template-file <filename>.bicep \
+--parameters @<filename>.parameters.json
+
+az monitor app-insights component show \
+--resource-group <resource-group-name>
+
+az resource list \
+--resource-group <resource-group-name> \
+--resource-type "Microsoft.Insights/components" \
+--query "[].{Name:name, Location:location, ProvisioningState:provisioningState}" \
+-o table
+
+
