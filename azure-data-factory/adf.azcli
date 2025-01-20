@@ -1,0 +1,19 @@
+#### Preview changes
+
+az deployment group what-if \
+--resource-group <resource-group-name> \
+--name <deployment-name> \
+--parameters <filename>.bicepparam
+
+#### Deploy the Azure resource
+
+az deployment group create \
+--resource-group <resource-group-name> \
+--name <deployment-name> \
+--parameters <filename>.bicepparam
+
+#### Validate the deployment
+
+az datafactory show \
+--name <data-factory-name> \
+--resource-group <resource-group-name> 
